@@ -71,6 +71,44 @@ const settings = Object.assign({}, userSettings, defaults);
 console.log(settings);
 
 // Spread Operator
-const updatedUser = {...hamzaUser, school: "fazaia", uni: "RISE College"}
-console.table(updatedUser)
-console.table(hamzaUser)
+const updatedUser = { ...hamzaUser, school: "fazaia", uni: "RISE College" };
+console.table(updatedUser);
+console.table(hamzaUser);
+
+const obj1 = {
+  name_: "Hamza",
+  greet: function () {
+    console.log(`Hello ${this.name_}`);
+  },
+  getName: () => {
+    console.log(obj1.name_);
+  },
+};
+const greet = obj1.greet;
+greet(); // Gives undefined as this loses its context because it depends on the function calling it.
+
+const boundGreet = obj1.greet.bind(obj1);
+boundGreet();
+
+// Immutable objects. Value can't be changed
+const user2 = {};
+Object.defineProperty(user2, "secretKey", {
+  value: "Your balance is $100B.",
+  writable: false,
+  enumerable: true,
+  configurable: false,
+});
+
+user2.secretKey = "I've hacked your bank acc.";
+// console.log(user2.secretKey);
+
+// Object Iteration
+for (const key in user1) {
+  console.log(`${key} : ${user1[key]}`)
+}
+
+console.log(Object.keys(user1)); // ["name", "role", ...]
+console.log(Object.values(user1)); // ["Alicia", "admin", ...]
+console.log(Object.entries(user1)); // [["name", "Alicia"], ["role", "admin"], ...]
+
+
